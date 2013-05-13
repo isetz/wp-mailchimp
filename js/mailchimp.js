@@ -23,15 +23,25 @@
 		$('#mc_signup_submit').removeAttr("disabled");
 		
 		// Put the response in the message div
-		$('#mc_message').html(data);
+		if(data != "")
+		{
+			$('#mc_message').html(data);
+		}
 		
 		// See if we're successful, if so, wipe the fields
 		var reg = new RegExp("class='mc_success_msg'", 'i');
 		if (reg.test(data)){
+			$('#mc_message').removeClass('alert-error');
+			$('#mc_message').addClass('alert alert-success');
 			$('#mc_signup_form').each(function(){
 				this.reset();
 			});
 			$('#mc_submit_type').val('js');
+		}
+		else
+		{
+			$('#mc_message').removeClass('alert-success');
+			$('#mc_message').addClass('alert alert-error');
 		}
 		$.scrollTo('#mc_signup', {offset: {top: -28}});
 	}
