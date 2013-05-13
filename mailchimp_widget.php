@@ -51,14 +51,14 @@ function mailchimpSF_signup_form($args = array()) {
 		<input type="hidden" name="mcsf_action" value="mc_submit_signup_form" />
 		<?php wp_nonce_field('mc_submit_signup_form', '_mc_submit_signup_form_nonce', false); ?>
 		
-	<?php 
+	<?php /*
 	if ($sub_heading) { 
 		?>
 		<div id="mc_subheader">
 			<?php echo $sub_heading; ?>
 		</div><!-- /mc_subheader -->
 		<?php
-	} 
+	} */
 	?>
 	
 	<div class="mc_form_inside">
@@ -151,9 +151,9 @@ function mailchimpSF_signup_form($args = array()) {
 		}
 		?>
 
-		<div class="mc_signup_submit">
-			<input type="submit" name="mc_signup_submit" id="mc_signup_submit" value="<?php echo esc_attr(get_option('mc_submit_text')); ?>" class="button btn" />
-		</div><!-- /mc_signup_submit -->
+		<span class="mc_signup_submit">
+			<input type="submit" name="mc_signup_submit" id="mc_signup_submit" value="<?php echo esc_attr(get_option('mc_submit_text')); ?>" class="button btn"/>
+		</span><!-- /mc_signup_submit -->
 	
 	
 		<?php
@@ -257,14 +257,14 @@ function mailchimp_form_field($var, $num_fields) {
 	$html = '';
 	// See if that var is set as required, or turned on (for display)
 	if ($var['req'] || get_option($opt) == 'on') {
-		$label = '<label for="'.esc_attr($opt).'" class="mc_var_label">'.esc_html($var['name']);
+		/*$label = '<label for="'.esc_attr($opt).'" class="mc_var_label">'.esc_html($var['name']);
 		if ($var['req'] && $num_fields > 1) {
 			$label .= '<span class="mc_required">*</span>';
 		}
-		$label .= '</label>';
+		$label .= '</label>';*/
 	
 		$html .= '
-<div class="mc_merge_var">
+<span class="mc_merge_var">
 		'.$label;
 	
 		switch ($var['field_type']) {
@@ -365,15 +365,16 @@ function mailchimp_form_field($var, $num_fields) {
 			case 'text':
 			case 'number':
 			default:
+				$placeholder = trim(get_option('mc_subheader_content'));
 				$html .= '
-	<input type="text" size="18" value="'.esc_html($var['default']).'" name="'.esc_attr($opt).'" id="'.esc_attr($opt).'" class="mc_input"/>';
+	<input type="text" size="18" value="'.esc_html($var['default']).'" name="'.esc_attr($opt).'" id="'.esc_attr($opt).'" class="mc_input" placeholder="'.$placeholder.'"/>';
 				break;
 		}
 		if (!empty($var['helptext'])) {
 			$html .= '<span class="mc_help">'.esc_html($var['helptext']).'</span>';
 		}
 		$html .= '
-</div><!-- /mc_merge_var -->';
+</span><!-- /mc_merge_var -->';
 	}
 	
 	return $html;
