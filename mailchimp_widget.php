@@ -63,7 +63,7 @@ function mailchimpSF_signup_form($args = array()) {
 	
 	<div class="mc_form_inside">
 		
-		<div class="updated" id="mc_message">
+		<div id="mc_message" class="updated">
 			<?php echo mailchimpSF_global_msg(); ?>
 		</div><!-- /mc_message -->
 
