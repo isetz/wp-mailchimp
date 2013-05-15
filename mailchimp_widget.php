@@ -152,7 +152,7 @@ function mailchimpSF_signup_form($args = array()) {
 		?>
 
 		<span class="mc_signup_submit">
-			<input type="submit" name="mc_signup_submit" id="mc_signup_submit" value="<?php echo esc_attr(get_option('mc_submit_text')); ?>" class="button btn"/>
+			<button name="mc_signup_submit" id="mc_signup_submit" class="button btn"><?php echo esc_attr(get_option('mc_submit_text')); ?></button>
 		</span><!-- /mc_signup_submit -->
 	
 	
